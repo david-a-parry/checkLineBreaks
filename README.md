@@ -34,6 +34,12 @@ Detect and optionally convert line breaks of a given text file to match system
     -h,--help
         Show this message and exit
 
+##Tests
+
+These scripts have been tested on Linux systems only (to date). To test on your
+system type 'prove' from within your installation directory in order to run the 
+tests provided.
+
 ##Author
 
 David A. Parry
