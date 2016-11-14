@@ -8,14 +8,14 @@ Detect and optionally convert line breaks of a given text file to match system
 
 ##Options
     
+    -o,--output FILE
+        Output file. If provided the input file will be written to this file 
+        with all line breaks converted to those of the current system
+
     -w,--write_if_diff
         Only create and write to output file if line breaks differ between
         the input file and the current system.
         
-    -o,--output FILE
-        Output file. If provided the input file will be written to this file 
-        with all line breaks converted to the current systems
-
     -d,--dos
         Force system line breaks to match those of DOS/Windows. 
         Can be used to output DOS/Windows formatted lines if on a different 
@@ -46,7 +46,7 @@ David A. Parry
 
 ##COPYRIGHT AND LICENSE
 
-Copyright 2016  David A. Parry
+    Copyright 2016  David A. Parry
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
