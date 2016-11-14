@@ -124,7 +124,7 @@ sub doMacTests{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks appear to MATCH system line break type.\n",
-        "correctly detect unix line breaks from $data_type",
+        "correctly detect mac line breaks from $data_type",
     );
     $n_tests++;
 
@@ -135,7 +135,7 @@ sub doMacTests{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-DOS from $data_type",
+        "correctly detect mac as non-DOS from $data_type",
     );
     $n_tests++;
 
@@ -146,7 +146,7 @@ sub doMacTests{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-unix from $data_type",
+        "correctly detect mac as non-unix from $data_type",
     );
     $n_tests++;
 
