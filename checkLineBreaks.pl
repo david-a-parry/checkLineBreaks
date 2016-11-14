@@ -44,7 +44,7 @@ if ( -p $in or $in eq '-') {#reading from pipe/STDIN
 my $buffer = '';
 my $IN;
 if ($in =~ /\.gz$/){
-    $IN = new IO::Uncompress::Gunzip $in 
+    $IN = new IO::Uncompress::Gunzip $in,  MultiStream => 1
           or die "IO::Uncompress::Gunzip failed while opening $in for reading:".
           "\n$GunzipError";
 }else{
@@ -97,7 +97,13 @@ sub convertFile{
         open ($INFILE, $tmp) or 
           die "Error opening temporary file '$tmp' for reading: $!\n";
     }else{
-        open ($INFILE, $in) or die "Failed to open $in for reading: $!\n";
+        if ($in =~ /\.gz$/){
+        $INFILE = new IO::Uncompress::Gunzip $in, MultiStream => 1 or 
+          die "IO::Uncompress::Gunzip failed while opening $in for reading:".
+          "\n$GunzipError";
+        }else{
+            open ($INFILE, "<", $in) or die "Failed to open $in for reading: $! ";
+        }
     }
     open (my $OUT, ">", $opts{o}) or die "Could not open output file " .
                                          "'$opts{o}' for reading: $!\n";
