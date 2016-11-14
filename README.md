@@ -12,7 +12,7 @@ Detect and optionally convert line breaks of a given text file to match system
         Only create and write to output file if line breaks differ between
         the input file and the current system.
         
-    -o,--output
+    -o,--output FILE
         Output file. If provided the input file will be written to this file 
         with all line breaks converted to the current systems
 
