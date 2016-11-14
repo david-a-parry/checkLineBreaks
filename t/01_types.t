@@ -21,15 +21,32 @@ done_testing($n_tests);
 
 ##################################################
 sub doUnix{
+    doUnixTests("$RealBin/test_data/unix.txt", "text");   
+    doUnixTests("$RealBin/test_data/unix.txt.gz", "gzipped data");   
+}
+##################################################
+sub doDos{
+    doDosTests("$RealBin/test_data/dos.txt", "text");   
+    doDosTests("$RealBin/test_data/dos.txt.gz", "gzipped data");   
+}
+##################################################
+sub doMac{
+    doMacTests("$RealBin/test_data/mac.txt", "text");   
+    doMacTests("$RealBin/test_data/mac.txt.gz", "gzipped data");   
+}
 
-    my $cmd = "$script_prefix $RealBin/test_data/unix.txt -u";
+##################################################
+sub doUnixTests{
+    my $f = shift;
+    my $data_type = shift;
+    my $cmd = "$script_prefix $f -u";
     my $output = `$cmd 2>&1`;
     is
     (
         $output,
         "Interpretting line breaks as of type 'Unix'\n". 
         "Line breaks appear to MATCH system line break type.\n",
-        "correctly detect unix line breaks",
+        "correctly detect unix line breaks from $data_type",
     );
     $n_tests++;
 
@@ -40,7 +57,7 @@ sub doUnix{
         $output,
         "Interpretting line breaks as of type 'Unix'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-DOS",
+        "correctly detect unix as non-DOS from $data_type",
     );
     $n_tests++;
 
@@ -51,15 +68,16 @@ sub doUnix{
         $output,
         "Interpretting line breaks as of type 'Unix'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-oldschool Mac",
+        "correctly detect unix as non-oldschool Mac from $data_type",
     );
     $n_tests++;
 
 }
 
 ##################################################
-sub doDos{
-
+sub doDosTests{
+    my $f = shift;
+    my $data_type = shift;
     my $cmd = "$script_prefix $RealBin/test_data/dos.txt -d";
     my $output = `$cmd 2>&1`;
     is
@@ -67,7 +85,7 @@ sub doDos{
         $output,
         "Interpretting line breaks as of type 'Windows/DOS'\n".
         "Line breaks appear to MATCH system line break type.\n",
-        "correctly detect DOS line breaks",
+        "correctly detect DOS line breaks from $data_type",
     );
     $n_tests++;
 
@@ -78,7 +96,7 @@ sub doDos{
         $output,
         "Interpretting line breaks as of type 'Windows/DOS'\n".
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect DOS as non-unix",
+        "correctly detect DOS as non-unix from $data_type",
     );
     $n_tests++;
 
@@ -89,15 +107,16 @@ sub doDos{
         $output,
         "Interpretting line breaks as of type 'Windows/DOS'\n".
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect DOS as non-oldschool Mac",
+        "correctly detect DOS as non-oldschool Mac from $data_type",
     );
     $n_tests++;
 
 }
 
 ##################################################
-sub doMac{
-
+sub doMacTests{
+    my $f = shift;
+    my $data_type = shift;
     my $cmd = "$script_prefix $RealBin/test_data/mac.txt -m";
     my $output = `$cmd 2>&1`;
     is
@@ -105,7 +124,7 @@ sub doMac{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks appear to MATCH system line break type.\n",
-        "correctly detect unix line breaks",
+        "correctly detect unix line breaks from $data_type",
     );
     $n_tests++;
 
@@ -116,7 +135,7 @@ sub doMac{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-DOS",
+        "correctly detect unix as non-DOS from $data_type",
     );
     $n_tests++;
 
@@ -127,7 +146,7 @@ sub doMac{
         $output,
         "Interpretting line breaks as of type 'Mac OS 9 or earlier'\n". 
         "Line breaks do NOT appear to match system line break type.\n",
-        "correctly detect unix as non-unix",
+        "correctly detect unix as non-unix from $data_type",
     );
     $n_tests++;
 
